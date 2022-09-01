@@ -1,11 +1,8 @@
 package lambda_functional_programming01;
 
-import jdk.jshell.execution.Util;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Fp03 {
     public static void main(String[] args) {
@@ -38,7 +35,10 @@ public class Fp03 {
         // bestenBuyukleriSil(liste);
         //baslangiciAYdaSonuNOlaniSil(liste);
         // baslangiciAYdaSonuNOlaniSil02(liste);
-        uzunluguSekizileOnArasiVeOİleBiteniSil(liste);
+        //uzunluguSekizileOnArasiVeOİleBiteniSil(liste);
+        System.out.println("uzunlugu12denAzmi : "+ uzunlugu12denAzmi(liste));
+        System.out.println("hicbirixIleBaslamiyorMu : "+ hicbirixIleBaslamiyorMu(liste));
+        System.out.println("rIleBitenVarmi :" + rIleBitenVarmi(liste));
 
     }
 
@@ -112,9 +112,26 @@ public class Fp03 {
     //  }
 
     //8) Uzunluğu 8 ile 10 arası olan yada 'o' ile biten elemanları yazdıran bir method oluşturun.
-    public static void uzunluguSekizileOnArasiVeOİleBiteniSil(List<String> list) {
-        list.removeIf(t->(t.length()>7 && t.length()<11) || t.endsWith("o"));
-        System.out.println(list);
-    }
+    //  public static void uzunluguSekizileOnArasiVeOİleBiteniSil(List<String> list) {
+    //      list.removeIf(t->(t.length()>7 && t.length()<11) || t.endsWith("o"));
+    //      System.out.println(list);
+    //  }
+
+    //9) Tüm elemanların uzunluklarının 12'den az olup olmadığını kontrol eden bir method oluşturun.
+     public static boolean uzunlugu12denAzmi(List<String> list) {
+        return list.stream().allMatch(t-> t.length()<12); //uzunlugu12denAzmi:true
+
+     }
+    //10) Hiçbir elemanın 'X' ile başlamadığını kontrol eden bir method oluşturun.
+
+     public static boolean hicbirixIleBaslamiyorMu(List<String> list) {
+        return list.stream().noneMatch(t-> t.startsWith("X") || t.startsWith("x"));   //xIleBaslamiyorMu: true
+     }
+
+    //11) Herhangi bir elemanın 'r' ile bitip bitmediğini kontrol eden bir method oluşturun.
+     public static boolean rIleBitenVarmi(List<String> list) {
+        return list.stream().anyMatch(t->t.endsWith("r"));    //rIleBitenVarmi :true
+     }
+
 
 }
